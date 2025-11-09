@@ -57,14 +57,14 @@
                 content: {
                     matrix: [
                         {
-                            distribution: "Rekatively Equally",
+                            distribution: "Power Distribution",
                             concentrated: "1. Representative government where a unified executive responds to popular will.",
                             fragmented: "2. Pluralist government where popular will prevails through competition between groups.",
                             examples1: "Ex. France, USA",
                             examples2: "Ex. Switzerland, Germany",
                         },
                         {
-                            distribution: "Unequally",
+                            distribution: "Power Unequally",
                             concentrated: "3. Government by an unrepresentative elite or gripped by external influences.",
                             fragmented: "4. Unpredictable and chaotic government, buffeted by multiple pressures.",
                             examples1: "Ex. Russia, China",
@@ -246,7 +246,7 @@
             // Slide 10: Thank You
             {
                 title: "Vielen Dank für Ihre Aufmerksamkeit",
-                subtitle: "Obrigado pela atenção",
+                subtitle: "Thank you for your attention",
                 type: "closing",
                 institution: "FHO Fachhochschule Ostschweiz",
             },
@@ -268,11 +268,11 @@
                         </div>
                         <div class="hidden sm:block">
                             <h1 class="text-lg font-bold">Policy Analysis</h1>
-                            <p class="text-xs text-gray-400">Theories of Power</p>
+                            <p class="text-sm text-gray-400">Theories of Power</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
-                        <div class="hidden md:block text-sm text-gray-300">
+                        <div class="hidden md:block text-base text-gray-300">
                             Slide ${currentSlide + 1} of ${slides.length}
                         </div>
                         <button
@@ -302,8 +302,8 @@
                     onclick="goToSlide(${idx})"
                     class="w-full text-left px-4 py-3 rounded-lg transition ${classes}"
                 >
-                    <div class="text-sm font-semibold">${s.title}</div>
-                    <div class="text-xs text-gray-400">Slide ${idx + 1}</div>
+                    <div class="text-base font-semibold">${s.title}</div>
+                    <div class="text-sm text-gray-400">Slide ${idx + 1}</div>
                 </button>
                 `;
             }).join('');
@@ -329,14 +329,14 @@
                             <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                                 ${slide.title}
                             </h1>
-                            <p class="text-xl md:text-2xl text-gray-300">${slide.subtitle}</p>
+                            <p class="text-2xl md:text-3xl text-gray-300">${slide.subtitle}</p>
                         </div>
                         <div class="pt-8 space-y-4 text-gray-400">
-                            <p class="text-lg">${slide.authors}</p>
-                            <p class="text-sm">${slide.date}</p>
+                            <p class="text-xl">${slide.authors}</p>
+                            <p class="text-base">${slide.date}</p>
                         </div>
                         <div class="pt-12">
-                            <div class="inline-block px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-sm font-semibold">
+                            <div class="inline-block px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-base font-semibold">
                                 Interactive Presentation
                             </div>
                         </div>
@@ -348,17 +348,17 @@
                     const matrixRows = slide.content.matrix.map(row => `
                         <div class="space-y-4">
                             <div class="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                            <h3 class="text-lg font-semibold text-gray-200">${row.distribution}</h3>
+                            <h3 class="text-xl font-semibold text-gray-200">${row.distribution}</h3>
                             <div class="grid grid-cols-1 gap-4">
                                 <div class="p-4 bg-blue-900/30 border border-blue-500/30 rounded-lg">
-                                    <p class="text-sm font-semibold text-blue-300 mb-2">Power Concentrated</p>
-                                    <p class="text-sm text-gray-300">${row.concentrated}</p>
-                                    <p class="text-xs text-gray-400 mt-2">${row.examples1}</p>
+                                    <p class="text-base font-semibold text-blue-300 mb-2">Power Concentrated</p>
+                                    <p class="text-base text-gray-300">${row.concentrated}</p>
+                                    <p class="text-sm text-gray-400 mt-2">${row.examples1}</p>
                                 </div>
                                 <div class="p-4 bg-purple-900/30 border border-purple-500/30 rounded-lg">
-                                    <p class="text-sm font-semibold text-purple-300 mb-2">Power Fragmented</p>
-                                    <p class="text-sm text-gray-300">${row.fragmented}</p>
-                                    <p class="text-xs text-gray-400 mt-2">${row.examples2}</p>
+                                    <p class="text-base font-semibold text-purple-300 mb-2">Power Fragmented</p>
+                                    <p class="text-base text-gray-300">${row.fragmented}</p>
+                                    <p class="text-sm text-gray-400 mt-2">${row.examples2}</p>
                                 </div>
                             </div>
                         </div>
@@ -367,7 +367,7 @@
                     <div class="space-y-8 animate-fade-in">
                         <div class="text-center space-y-2">
                             <h2 class="text-4xl md:text-5xl font-bold">${slide.title}</h2>
-                            <p class="text-xl text-gray-400">${slide.subtitle}</p>
+                            <p class="text-2xl text-gray-400">${slide.subtitle}</p>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             ${matrixRows}
@@ -381,19 +381,19 @@
                         const points = section.points ? section.points.map(point => `
                             <li class="flex gap-4 items-start">
                                 <span class="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 mt-2 flex-shrink-0"></span>
-                                <span class="text-gray-300 text-md leading-relaxed">${point}</span>
+                                <span class="text-lg text-gray-300 leading-relaxed">${point}</span>
                             </li>
                         `).join('') : '';
                         
                         const note = section.note ? `
                             <div class="mt-4 p-4 bg-amber-900/20 border border-amber-600/30 rounded-lg">
-                                <p class="text-sm text-amber-200 italic">${section.note}</p>
+                                <p class="text-base text-amber-200 italic">${section.note}</p>
                             </div>
                         ` : '';
 
                         return `
                         <div class="space-y-4">
-                            ${section.heading ? `<h3 class="text-2xl font-semibold text-blue-400">${section.heading}</h3>` : ''}
+                            ${section.heading ? `<h3 class="text-3xl font-semibold text-blue-400">${section.heading}</h3>` : ''}
                             ${points ? `<ul class="space-y-3">${points}</ul>` : ''}
                             ${note}
                         </div>
@@ -403,7 +403,7 @@
                     <div class="space-y-8 animate-fade-in">
                         <div class="text-center space-y-2">
                             <h2 class="text-4xl md:text-5xl font-bold">${slide.title}</h2>
-                            ${slide.subtitle ? `<p class="text-xl text-gray-400">${slide.subtitle}</p>` : ''}
+                            ${slide.subtitle ? `<p class="text-2xl text-gray-400">${slide.subtitle}</p>` : ''}
                         </div>
                         <div class="space-y-6">
                             ${sections}
@@ -419,7 +419,7 @@
                         "Academia", "Religious Groups", "International Orgs",
                     ].map(player => `
                         <div class="p-4 bg-gradient-to-br from-blue-900/40 to-purple-900/40 border border-blue-500/30 rounded-lg hover:border-blue-500/60 transition text-center">
-                            <p class="font-semibold text-gray-200">${player}</p>
+                            <p class="text-lg font-semibold text-gray-200">${player}</p>
                         </div>
                     `).join('');
                     slideContent = `
@@ -430,19 +430,19 @@
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                             ${players}
                         </div>
-                        <p class="text-center text-gray-400 mt-6">${slide.content || ''}</p>
+                        <p class="text-lg text-center text-gray-400 mt-6">${slide.content || ''}</p>
                     </div>
                     `;
                     break;
 
                 case 'table':
                     const headers = slide.content.headers.map(header => `
-                        <th class="px-4 py-3 text-left font-semibold text-blue-400 text-sm">${header}</th>
+                        <th class="px-4 py-3 text-left font-semibold text-blue-400 text-base">${header}</th>
                     `).join('');
                     
                     const rows = slide.content.rows.map(row => `
                         <tr class="border-b border-white/10 hover:bg-white/5 transition">
-                            ${row.map(cell => `<td class="px-4 py-3 text-sm text-gray-300">${cell}</td>`).join('')}
+                            ${row.map(cell => `<td class="px-4 py-3 text-base text-gray-300">${cell}</td>`).join('')}
                         </tr>
                     `).join('');
                     
@@ -450,7 +450,7 @@
                     <div class="space-y-8 animate-fade-in">
                         <div class="text-center space-y-2">
                             <h2 class="text-4xl md:text-5xl font-bold">${slide.title}</h2>
-                            ${slide.subtitle ? `<p class="text-xl text-gray-400">${slide.subtitle}</p>` : ''}
+                            ${slide.subtitle ? `<p class="text-2xl text-gray-400">${slide.subtitle}</p>` : ''}
                         </div>
                         <div class="overflow-x-auto">
                             <table class="w-full">
@@ -470,14 +470,14 @@
                     const insights = slide.content.insights.map(insight => `
                         <li class="flex gap-3 items-start">
                             <span class="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2 flex-shrink-0"></span>
-                            <span class="text-gray-300 text-md leading-relaxed">${insight}</span>
+                            <span class="text-base text-gray-300 leading-relaxed">${insight}</span>
                         </li>
                     `).join('');
 
                     const synthesis = slide.content.synthesis.map(point => `
                         <li class="flex gap-3 items-start">
                             <span class="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2 flex-shrink-0"></span>
-                            <span class="text-gray-300 text-sm leading-relaxed">${point}</span>
+                            <span class="text-base text-gray-300 leading-relaxed">${point}</span>
                         </li>
                     `).join('');
 
@@ -485,15 +485,15 @@
                     <div class="space-y-8 animate-fade-in">
                         <div class="text-center space-y-2">
                             <h2 class="text-4xl md:text-5xl font-bold">${slide.title}</h2>
-                            ${slide.subtitle ? `<p class="text-xl text-gray-400">${slide.subtitle}</p>` : ''}
+                            ${slide.subtitle ? `<p class="text-2xl text-gray-400">${slide.subtitle}</p>` : ''}
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="space-y-4">
-                                <h3 class="text-lg font-semibold text-blue-400">Key Insights</h3>
+                                <h3 class="text-xl font-semibold text-blue-400">Key Insights</h3>
                                 <ul class="space-y-3">${insights}</ul>
                             </div>
                             <div class="space-y-4">
-                                <h3 class="text-lg font-semibold text-purple-400">Synthesis & Implications</h3>
+                                <h3 class="text-xl font-semibold text-purple-400">Synthesis & Implications</h3>
                                 <ul class="space-y-3">${synthesis}</ul>
                             </div>
                         </div>
@@ -508,11 +508,11 @@
                             <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                                 ${slide.title}
                             </h1>
-                            <p class="text-xl text-gray-400">${slide.subtitle}</p>
+                            <p class="text-2xl text-gray-400">${slide.subtitle}</p>
                         </div>
                         <div class="pt-12">
                             <div class="inline-block">
-                                <p class="text-lg font-semibold text-gray-300 mb-2">${slide.institution}</p>
+                                <p class="text-xl font-semibold text-gray-300 mb-2">${slide.institution}</p>
                                 <div class="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
                             </div>
                         </div>
