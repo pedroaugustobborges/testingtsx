@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Políticas Públicas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in {
+            animation: fade-in 0.6s ease-out;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+    
+    <div id="app">
+        </div>
+
+    <script>
+        // --- Ícones SVG (Substituindo lucide-react) ---
+        const ICONS = {
+            chevronLeft: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>`,
+            chevronRight: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>`,
+            menu: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>`,
+            x: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>`
+        };
+
+        // --- Dados dos Slides ---
+        const slides = [
+            // Slide 0: Title
+            {
+                title: "Gestão de Políticas Públicas",
+                subtitle: "Hill (2005): Chapter 2 – Theories of Power in the Policy Process",
+                authors: "Pedro, Lorena & Dario",
+                date: "November 2025",
+                type: "title",
+            },
+            // Slide 1: Basic Concepts
+            {
+                title: "The Basic Concepts of the Article",
+                subtitle: "Distribution and Structure of Power",
+                type: "matrix",
+                content: {
+                    matrix: [
+                        {
+                            distribution: "Power Distribution",
+                            concentrated: "1. Representative government where a unified executive responds to popular will.",
+                            fragmented: "2. Pluralist government where popular will prevails through competition between groups.",
+                            examples1: "Ex. France, USA",
+                            examples2: "Ex. Switzerland, Germany",
+                        },
+                        {
+                            distribution: "Power Unequally",
+                            concentrated: "3. Government by an unrepresentative elite or gripped by external influences.",
+                            fragmented: "4. Unpredictable and chaotic government, buffeted by multiple pressures.",
+                            examples1: "Ex. Russia, China",
+                            examples2: "Ex. Lebanon, Iraq",
+                        },
+                    ],
+                },
+            },
+            // Slide 2: Pluralist Model
+            {
+                title: "The Pluralist Model",
+                subtitle: "Power as a Competitive Marketplace",
+                type: "content",
+                sections: [
+                    {
+                        heading: "From Representative to Pluralist Democracy",
+                        points: [
+                            "Pluralism posits that power is widely, though not equally, distributed among different groups in society.",
+                            "Power is defined by resources (e.g., money, information, expertise, public support)",
+                            "Although a few scholars view the government as a neutral actor, most emphasize that it plays an active role, pursuing its own agenda within the process.",
+                        ],
+                    },
+                ],
+            },
+            // Slide 3: Brazilian Political Arena
+            {
+                title: "Who are the players in the Brazilian political arena?",
+                type: "players",
+                content: "Multiple stakeholders including political parties, civil society organizations, business groups, labor unions, and government institutions shape policy outcomes.",
+            },
+            // Slide 4: Challenging Pluralism
+            {
+                title: "Challenging Pluralism",
+                subtitle: "The Hidden Dimensions of Power",
+                type: "content",
+                sections: [
+                    {
+                        heading: "Lukes's Three-Dimensional View (1974)",
+                        points: [
+                            "First Dimension: Visible power and overt conflict",
+                            "Second Dimension: Controlling the political agenda",
+                            "Third Dimension: Shaping people's perception (to accept the existing order)",
+                        ],
+                    },
+                    {
+                        heading: "Bachrach & Baratz (1962): Two Faces of Power",
+                        points: [
+                            "First Face: Obvious political conflicts",
+                            "Second Face: Subtle shaping of the political agenda (or even protecting the agenda)",
+                            "Key concepts: Mobilization of bias, Nondecision-making",
+                        ],
+                    },
+                    {
+                        note: "The difficulty with Lukes's third dimension is that it requires identifying the 'true interests' of a group—a methodologically and philosophically problematic claim. Colin Hay reframes this as 'context-shaping.'",
+                    },
+                ],
+            },
+            // Slide 5: Elite Theory
+            {
+                title: "Theories of Concentrated Power",
+                subtitle: "Elite and Economic Class",
+                type: "content",
+                sections: [
+                    {
+                        heading: "The Elite Theory",
+                        points: [
+                            "Elite and Marxist theories assert a cohesive minority holds decisive influence over public policy",
+                            "Core argument: Governance by a minority is an inescapable feature of all societies",
+                            "Gaetano Mosca: All societies are divided into a ruling class (small, monopolizes power) and a ruled class (numerous, controlled by the first)",
+                        ],
+                    },
+                    {
+                        heading: "Sources of Elite Power",
+                        points: [
+                            "Large-scale organizations",
+                            "Military",
+                            "Wealth",
+                            "Technical expertise",
+                            "Relationships",
+                        ],
+                    },
+                    {
+                        heading: "C. Wright Mills's 'Power Elite' (1956)",
+                        points: [
+                            "Three key institutions: major business corporations, military, and federal government",
+                        ],
+                    },
+                ],
+            },
+            // Slide 6: Historical Contingency
+            {
+                title: "Historical Contingency",
+                subtitle: "The Foundational Principles of the Marxist Perspective",
+                type: "content",
+                sections: [
+                    {
+                        heading: "Key Insight",
+                        points: [
+                            "The specific order in which events occur can critically shape divergent political outcomes.",
+                            "Historical processes are not predetermined but contingent on specific circumstances and decisions.",
+                        ],
+                    },
+                ],
+            },
+            // Slide 7: Structural Determinism
+            {
+                title: "Structural Determinism",
+                subtitle: "How Context Shapes Policy",
+                type: "content",
+                sections: [
+                    {
+                        heading: "Structuralism",
+                        points: [
+                            "Large-scale, impersonal forces create a powerful impact and limit the choices of political actors",
+                        ],
+                    },
+                    {
+                        heading: "Globalism",
+                        points: [
+                            "The state's autonomy is increasingly challenged by global economic forces",
+                            "⚠️ But: Globalization can be a 'convenient alibi' for politicians",
+                        ],
+                    },
+                    {
+                        heading: "Other Deep Structures of Power",
+                        points: [
+                            "Gender, ethnicity, religion, and nationality shape political outcomes",
+                            "Acknowledging these structural constraints requires a more nuanced assessment of power than any single theory can provide",
+                        ],
+                    },
+                ],
+            },
+            // Slide 8: Evolution of Perspectives
+            {
+                title: "Closing",
+                subtitle: "Evolution of Perspectives",
+                type: "table",
+                content: {
+                    headers: ["Phase", "Focus", "Core Idea"],
+                    rows: [
+                        [
+                            "Pluralism",
+                            "Competition among many groups",
+                            "Politics as an open marketplace of interests",
+                        ],
+                        [
+                            "Elite Theory & Marxism",
+                            "Unequal distribution of power",
+                            "'The few decide for the many.'",
+                        ],
+                        [
+                            "Structuralism",
+                            "Deep underlying power structures",
+                            "Social and economic constraints determine the scope of action",
+                        ],
+                    ],
+                },
+            },
+            // Slide 9: Central Insights
+            {
+                title: "Closing (2/2)",
+                subtitle: "Central Insights",
+                type: "insights",
+                content: {
+                    insights: [
+                        "The political stage is not equally accessible to everyone – the rules of the game favor established interests.",
+                        "Power operates openly (through decisions) and covertly (through agenda-setting and ideology).",
+                        "Inequalities based on class, gender, and ethnicity shape the political process.",
+                        "Reality: 'A very unbalanced pluralism' (Schattschneider)",
+                    ],
+                    synthesis: [
+                        "No single theory fully explains power.",
+                        "Combination of actor- and structure-oriented perspectives is essential:",
+                        "Actors operate within structures, yet simultaneously transform those structures through their actions.",
+                        "⇒ For policy analysis, it is crucial to understand the interaction between agency and structure.",
+                    ],
+                },
+            },
+            // Slide 10: Thank You
+            {
+                title: "Vielen Dank für Ihre Aufmerksamkeit",
+                subtitle: "Thank you for your attention",
+                type: "closing",
+                institution: "FHO Fachhochschule Ostschweiz",
+            },
+        ];
+
+        // --- Estado da Aplicação (Substituindo useState) ---
+        let currentSlide = 0;
+        let isMenuOpen = false;
+
+        // --- Funções de Renderização (Construindo o HTML) ---
+
+        function renderHeader() {
+            return `
+            <header class="fixed top-0 left-0 right-0 z-40 bg-black/40 backdrop-blur-md border-b border-white/10">
+                <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center font-bold">
+                            HK
+                        </div>
+                        <div class="hidden sm:block">
+                            <h1 class="text-lg font-bold">Policy Analysis</h1>
+                            <p class="text-xs text-gray-400">Theories of Power</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="hidden md:block text-sm text-gray-300">
+                            Slide ${currentSlide + 1} of ${slides.length}
+                        </div>
+                        <button
+                            onclick="toggleMenu()"
+                            class="p-2 hover:bg-white/10 rounded-lg transition"
+                        >
+                            ${isMenuOpen ? ICONS.x : ICONS.menu}
+                        </button>
+                    </div>
+                </div>
+            </header>
+            `;
+        }
+
+        function renderMenu() {
+            if (!isMenuOpen) return '';
+
+            const menuItems = slides.map((s, idx) => {
+                const isActive = idx === currentSlide;
+                const classes = isActive
+                    ? "bg-blue-600 text-white"
+                    : "bg-white/5 hover:bg-white/10 text-gray-300";
+                
+                return `
+                <button
+                    key=${idx}
+                    onclick="goToSlide(${idx})"
+                    class="w-full text-left px-4 py-3 rounded-lg transition ${classes}"
+                >
+                    <div class="text-sm font-semibold">${s.title}</div>
+                    <div class="text-xs text-gray-400">Slide ${idx + 1}</div>
+                </button>
+                `;
+            }).join('');
+
+            return `
+            <div class="fixed left-0 top-16 bottom-0 w-64 bg-black/80 backdrop-blur-md border-r border-white/10 overflow-y-auto z-30">
+                <div class="p-4 space-y-2">
+                    ${menuItems}
+                </div>
+            </div>
+            `;
+        }
+
+        function renderMain() {
+            const slide = slides[currentSlide];
+            let slideContent = '';
+
+            switch (slide.type) {
+                case 'title':
+                    slideContent = `
+                    <div class="text-center space-y-8 animate-fade-in">
+                        <div class="space-y-4">
+                            <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                                ${slide.title}
+                            </h1>
+                            <p class="text-xl md:text-2xl text-gray-300">${slide.subtitle}</p>
+                        </div>
+                        <div class="pt-8 space-y-4 text-gray-400">
+                            <p class="text-lg">${slide.authors}</p>
+                            <p class="text-sm">${slide.date}</p>
+                        </div>
+                        <div class="pt-12">
+                            <div class="inline-block px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-sm font-semibold">
+                                Interactive Presentation
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    break;
+
+                case 'matrix':
+                    const matrixRows = slide.content.matrix.map(row => `
+                        <div class="space-y-4">
+                            <div class="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                            <h3 class="text-lg font-semibold text-gray-200">${row.distribution}</h3>
+                            <div class="grid grid-cols-1 gap-4">
+                                <div class="p-4 bg-blue-900/30 border border-blue-500/30 rounded-lg">
+                                    <p class="text-sm font-semibold text-blue-300 mb-2">Power Concentrated</p>
+                                    <p class="text-sm text-gray-300">${row.concentrated}</p>
+                                    <p class="text-xs text-gray-400 mt-2">${row.examples1}</p>
+                                </div>
+                                <div class="p-4 bg-purple-900/30 border border-purple-500/30 rounded-lg">
+                                    <p class="text-sm font-semibold text-purple-300 mb-2">Power Fragmented</p>
+                                    <p class="text-sm text-gray-300">${row.fragmented}</p>
+                                    <p class="text-xs text-gray-400 mt-2">${row.examples2}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                    slideContent = `
+                    <div class="space-y-8 animate-fade-in">
+                        <div class="text-center space-y-2">
+                            <h2 class="text-4xl md:text-5xl font-bold">${slide.title}</h2>
+                            <p class="text-xl text-gray-400">${slide.subtitle}</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            ${matrixRows}
+                        </div>
+                    </div>
+                    `;
+                    break;
+                
+                case 'content':
+                    const sections = slide.sections.map(section => {
+                        const points = section.points ? section.points.map(point => `
+                            <li class="flex gap-4 items-start">
+                                <span class="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 mt-2 flex-shrink-0"></span>
+                                <span class="text-gray-300 leading-relaxed">${point}</span>
+                            </li>
+                        `).join('') : '';
+                        
+                        const note = section.note ? `
+                            <div class="mt-4 p-4 bg-amber-900/20 border border-amber-600/30 rounded-lg">
+                                <p class="text-sm text-amber-200 italic">${section.note}</p>
+                            </div>
+                        ` : '';
+
+                        return `
+                        <div class="space-y-4">
+                            ${section.heading ? `<h3 class="text-2xl font-semibold text-blue-400">${section.heading}</h3>` : ''}
+                            ${points ? `<ul class="space-y-3">${points}</ul>` : ''}
+                            ${note}
+                        </div>
+                        `;
+                    }).join('');
+                    slideContent = `
+                    <div class="space-y-8 animate-fade-in">
+                        <div class="text-center space-y-2">
+                            <h2 class="text-4xl md:text-5xl font-bold">${slide.title}</h2>
+                            ${slide.subtitle ? `<p class="text-xl text-gray-400">${slide.subtitle}</p>` : ''}
+                        </div>
+                        <div class="space-y-6">
+                            ${sections}
+                        </div>
+                    </div>
+                    `;
+                    break;
+
+                case 'players':
+                    const players = [
+                        "Political Parties", "Civil Society", "Business Groups",
+                        "Labor Unions", "Government", "Media",
+                        "Academia", "Religious Groups", "International Orgs",
+                    ].map(player => `
+                        <div class="p-4 bg-gradient-to-br from-blue-900/40 to-purple-900/40 border border-blue-500/30 rounded-lg hover:border-blue-500/60 transition text-center">
+                            <p class="font-semibold text-gray-200">${player}</p>
+                        </div>
+                    `).join('');
+                    slideContent = `
+                    <div class="space-y-8 animate-fade-in">
+                        <div class="text-center space-y-2">
+                            <h2 class="text-4xl md:text-5xl font-bold">${slide.title}</h2>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            ${players}
+                        </div>
+                        <p class="text-center text-gray-400 mt-6">${slide.content || ''}</p>
+                    </div>
+                    `;
+                    break;
+
+                case 'table':
+                    const headers = slide.content.headers.map(header => `
+                        <th class="px-4 py-3 text-left font-semibold text-blue-400 text-sm">${header}</th>
+                    `).join('');
+                    
+                    const rows = slide.content.rows.map(row => `
+                        <tr class="border-b border-white/10 hover:bg-white/5 transition">
+                            ${row.map(cell => `<td class="px-4 py-3 text-sm text-gray-300">${cell}</td>`).join('')}
+                        </tr>
+                    `).join('');
+                    
+                    slideContent = `
+                    <div class="space-y-8 animate-fade-in">
+                        <div class="text-center space-y-2">
+                            <h2 class="text-4xl md:text-5xl font-bold">${slide.title}</h2>
+                            ${slide.subtitle ? `<p class="text-xl text-gray-400">${slide.subtitle}</p>` : ''}
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="border-b border-blue-500/50">${headers}</tr>
+                                </thead>
+                                <tbody>
+                                    ${rows}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    `;
+                    break;
+                
+                case 'insights':
+                    const insights = slide.content.insights.map(insight => `
+                        <li class="flex gap-3 items-start">
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2 flex-shrink-0"></span>
+                            <span class="text-gray-300 text-sm leading-relaxed">${insight}</span>
+                        </li>
+                    `).join('');
+
+                    const synthesis = slide.content.synthesis.map(point => `
+                        <li class="flex gap-3 items-start">
+                            <span class="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2 flex-shrink-0"></span>
+                            <span class="text-gray-300 text-sm leading-relaxed">${point}</span>
+                        </li>
+                    `).join('');
+
+                    slideContent = `
+                    <div class="space-y-8 animate-fade-in">
+                        <div class="text-center space-y-2">
+                            <h2 class="text-4xl md:text-5xl font-bold">${slide.title}</h2>
+                            ${slide.subtitle ? `<p class="text-xl text-gray-400">${slide.subtitle}</p>` : ''}
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <h3 class="text-lg font-semibold text-blue-400">Key Insights</h3>
+                                <ul class="space-y-3">${insights}</ul>
+                            </div>
+                            <div class="space-y-4">
+                                <h3 class="text-lg font-semibold text-purple-400">Synthesis & Implications</h3>
+                                <ul class="space-y-3">${synthesis}</ul>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    break;
+
+                case 'closing':
+                    slideContent = `
+                    <div class="text-center space-y-12 animate-fade-in">
+                        <div class="space-y-6">
+                            <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                                ${slide.title}
+                            </h1>
+                            <p class="text-xl text-gray-400">${slide.subtitle}</p>
+                        </div>
+                        <div class="pt-12">
+                            <div class="inline-block">
+                                <p class="text-lg font-semibold text-gray-300 mb-2">${slide.institution}</p>
+                                <div class="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    break;
+            }
+
+            return `
+            <main class="pt-20 pb-24 px-4 min-h-screen flex items-center justify-center">
+                <div class="w-full max-w-4xl">
+                    ${slideContent}
+                </div>
+            </main>
+            `;
+        }
+
+        function renderFooter() {
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            return `
+            <footer class="fixed bottom-0 left-0 right-0 bg-black/40 backdrop-blur-md border-t border-white/10">
+                <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+                    <button
+                        onclick="prevSlide()"
+                        class="p-2 rounded-lg border-white/20 hover:bg-white/10 border"
+                    >
+                        ${ICONS.chevronLeft}
+                    </button>
+                    <div class="flex-1 mx-4">
+                        <div class="w-full bg-white/10 rounded-full h-1">
+                            <div
+                                class="bg-gradient-to-r from-blue-500 to-purple-500 h-1 rounded-full transition-all duration-300"
+                                style="width: ${progress}%"
+                            ></div>
+                        </div>
+                    </div>
+                    <button
+                        onclick="nextSlide()"
+                        class="p-2 rounded-lg border-white/20 hover:bg-white/10 border"
+                    >
+                        ${ICONS.chevronRight}
+                    </button>
+                </div>
+            </footer>
+            `;
+        }
+
+        // --- Função Principal de Renderização ---
+        function renderApp() {
+            const appEl = document.getElementById('app');
+            if (appEl) {
+                appEl.innerHTML = `
+                    ${renderHeader()}
+                    ${renderMenu()}
+                    ${renderMain()}
+                    ${renderFooter()}
+                `;
+            }
+        }
+
+        // --- Funções de Evento (Substituindo handlers do React) ---
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            renderApp();
+        };
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            renderApp();
+        };
+
+        function goToSlide(index) {
+            currentSlide = index;
+            isMenuOpen = false;
+            renderApp();
+        };
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            renderApp();
+        }
+
+        // --- Event Listeners (Substituindo useEffect) ---
+        
+        function handleKeyPress(e) {
+            if (e.key === "ArrowRight" || e.key === " ") {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                prevSlide();
+            }
+        }
+
+        window.addEventListener("keydown", handleKeyPress);
+        
+        // --- Renderização Inicial ---
+        document.addEventListener('DOMContentLoaded', renderApp);
+
+    </script>
+</body>
+</html>
