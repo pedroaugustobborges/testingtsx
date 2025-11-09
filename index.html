@@ -381,19 +381,19 @@
                         const points = section.points ? section.points.map(point => `
                             <li class="flex gap-4 items-start">
                                 <span class="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 mt-2 flex-shrink-0"></span>
-                                <span class="text-lg text-gray-300 leading-relaxed">${point}</span>
+                                <span class="text-xl text-gray-300 leading-relaxed">${point}</span>
                             </li>
                         `).join('') : '';
                         
                         const note = section.note ? `
                             <div class="mt-4 p-4 bg-amber-900/20 border border-amber-600/30 rounded-lg">
-                                <p class="text-base text-amber-200 italic">${section.note}</p>
+                                <p class="text-lg text-amber-200 italic">${section.note}</p>
                             </div>
                         ` : '';
 
                         return `
                         <div class="space-y-4">
-                            ${section.heading ? `<h3 class="text-3xl font-semibold text-blue-400">${section.heading}</h3>` : ''}
+                            <h3 class="text-3xl font-semibold text-blue-400">${section.heading}</h3>
                             ${points ? `<ul class="space-y-3">${points}</ul>` : ''}
                             ${note}
                         </div>
@@ -403,7 +403,7 @@
                     <div class="space-y-8 animate-fade-in">
                         <div class="text-center space-y-2">
                             <h2 class="text-4xl md:text-5xl font-bold">${slide.title}</h2>
-                            ${slide.subtitle ? `<p class="text-2xl text-gray-400">${slide.subtitle}</p>` : ''}
+                            ${slide.subtitle ? `<p class="text-3xl text-gray-400">${slide.subtitle}</p>` : ''}
                         </div>
                         <div class="space-y-6">
                             ${sections}
@@ -437,12 +437,12 @@
 
                 case 'table':
                     const headers = slide.content.headers.map(header => `
-                        <th class="px-4 py-3 text-left font-semibold text-blue-400 text-base">${header}</th>
+                        <th class="px-4 py-3 text-left font-semibold text-blue-400 text-lg">${header}</th>
                     `).join('');
                     
                     const rows = slide.content.rows.map(row => `
                         <tr class="border-b border-white/10 hover:bg-white/5 transition">
-                            ${row.map(cell => `<td class="px-4 py-3 text-base text-gray-300">${cell}</td>`).join('')}
+                            ${row.map(cell => `<td class="px-4 py-3 text-lg text-gray-300">${cell}</td>`).join('')}
                         </tr>
                     `).join('');
                     
@@ -450,7 +450,7 @@
                     <div class="space-y-8 animate-fade-in">
                         <div class="text-center space-y-2">
                             <h2 class="text-4xl md:text-5xl font-bold">${slide.title}</h2>
-                            ${slide.subtitle ? `<p class="text-2xl text-gray-400">${slide.subtitle}</p>` : ''}
+                            ${slide.subtitle ? `<p class="text-3xl text-gray-400">${slide.subtitle}</p>` : ''}
                         </div>
                         <div class="overflow-x-auto">
                             <table class="w-full">
@@ -470,14 +470,14 @@
                     const insights = slide.content.insights.map(insight => `
                         <li class="flex gap-3 items-start">
                             <span class="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2 flex-shrink-0"></span>
-                            <span class="text-base text-gray-300 leading-relaxed">${insight}</span>
+                            <span class="text-lg text-gray-300 leading-relaxed">${insight}</span>
                         </li>
                     `).join('');
 
                     const synthesis = slide.content.synthesis.map(point => `
                         <li class="flex gap-3 items-start">
                             <span class="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2 flex-shrink-0"></span>
-                            <span class="text-base text-gray-300 leading-relaxed">${point}</span>
+                            <span class="text-lg text-gray-300 leading-relaxed">${point}</span>
                         </li>
                     `).join('');
 
@@ -485,15 +485,15 @@
                     <div class="space-y-8 animate-fade-in">
                         <div class="text-center space-y-2">
                             <h2 class="text-4xl md:text-5xl font-bold">${slide.title}</h2>
-                            ${slide.subtitle ? `<p class="text-2xl text-gray-400">${slide.subtitle}</p>` : ''}
+                            ${slide.subtitle ? `<p class="text-3xl text-gray-400">${slide.subtitle}</p>` : ''}
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="space-y-4">
-                                <h3 class="text-xl font-semibold text-blue-400">Key Insights</h3>
+                                <h3 class="text-2xl font-semibold text-blue-400">Key Insights</h3>
                                 <ul class="space-y-3">${insights}</ul>
                             </div>
                             <div class="space-y-4">
-                                <h3 class="text-xl font-semibold text-purple-400">Synthesis & Implications</h3>
+                                <h3 class="text-2xl font-semibold text-purple-400">Synthesis & Implications</h3>
                                 <ul class="space-y-3">${synthesis}</ul>
                             </div>
                         </div>
